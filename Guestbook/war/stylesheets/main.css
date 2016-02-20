@@ -1,0 +1,12 @@
+body {
+   font-family: Verdana, Helvetica, sans-serif;
+   background-color: #FF8000; /*burnt orange*/
+}
+#post_title {
+	font-family: "Times New Roman", Georgia, Serif;
+	background-color: #0000CC; /*navy blue*/ 	
+}
+
+#sub_js {
+	visibility: hidden;
+}

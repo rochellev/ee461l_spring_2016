@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+	<cron>
+		<url>/cron/gaejcronjob</url>
+		<description>Sends an email that notifies subscriber of new blog posts (within 24 hours)</description>
+		<schedule>every day 17:00</schedule>
+		<timezone>America/Chicago</timezone>
+	</cron>
+</cronentries>
