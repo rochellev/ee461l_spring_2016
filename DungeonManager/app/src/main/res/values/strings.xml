@@ -1,5 +1,0 @@
-<resources>
-    <string name="app_name">DungeonManager</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_dungeon_master">DungeonMasterActivity</string>
-</resources>
