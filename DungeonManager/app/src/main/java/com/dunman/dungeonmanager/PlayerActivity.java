@@ -11,10 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;  
-
 public class PlayerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +46,10 @@ public class PlayerActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        // Logs 'install' and 'app activate' App Events.
-        AppEventsLogger.activateApp(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-
-        // Logs 'app deactivate' App Event.
-        AppEventsLogger.deactivateApp(this);
     }
 }
