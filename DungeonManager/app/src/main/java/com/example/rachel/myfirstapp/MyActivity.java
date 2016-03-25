@@ -1,6 +1,7 @@
 package com.example.rachel.myfirstapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,9 @@ public class MyActivity extends AppCompatActivity {
 
     public final static String EXTRA_MESSAGE = "com.example.rachel.myfirstapp.MESSAGE";
 
+    private static final String PREFS_NAME = "CharacterSheet";
+    private static final String DEFAULT_CHAR_NAME = "THISisNoTAcharACtERName";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +27,19 @@ public class MyActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        if(settings.getString("cName", DEFAULT_CHAR_NAME) != DEFAULT_CHAR_NAME){
+            EditText editText =(EditText) findViewById(R.id.edit_message);
+            EditText nameText =(EditText) findViewById(R.id.name_message);
+            EditText typeText =(EditText) findViewById(R.id.type_message);
+            EditText classText =(EditText) findViewById(R.id.class_message);
+
+            nameText.setText(settings.getString("cName", DEFAULT_CHAR_NAME));
+            typeText.setText(settings.getString("cType", "noType"));
+            classText.setText(settings.getString("cClass", "noClass"));
+        }
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,6 +83,14 @@ public class MyActivity extends AppCompatActivity {
         String name_message = nameText.getText().toString();
         String type_message = typeText.getText().toString();
         String class_message = classText.getText().toString();
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("cName", name_message);
+        editor.putString("cType", type_message);
+        editor.putString("cClass",class_message);
+        // Commit the edits!
+        editor.commit();
 
         intent.putExtra(EXTRA_MESSAGE, message);
         intent.putExtra("name", name_message);
