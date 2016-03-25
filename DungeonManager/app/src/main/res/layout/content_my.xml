@@ -11,17 +11,16 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
         android:text="@string/Title"
-        android:textColor="#d40d0d"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:textColor="#d40d53"
+        android:layout_marginTop="77dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="75dip" />
 
     <EditText
         android:id="@+id/edit_message"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_below="@+id/name_message"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/edit_message" />
@@ -36,7 +35,6 @@
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:layout_weight="1"
         android:id="@+id/type_message"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -50,8 +48,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/class_message"
-        android:layout_alignBottom="@+id/type_message"
-        android:layout_marginBottom="50dp" />
+        android:layout_below="@+id/edit_message"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"

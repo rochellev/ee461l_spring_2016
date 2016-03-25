@@ -53,11 +53,16 @@ public class DisplayMessageActivity extends AppCompatActivity {
         textView4.setText(type);
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.content);
-        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
-        params1.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
-        layout.addView(textView1, params1);
-        layout.addView(textView2, params1);
+        RelativeLayout.LayoutParams param1 = new
+                RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
+        param1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+
+        RelativeLayout.LayoutParams param2 = new
+                RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
+        param1.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+
+        layout.addView(textView1, param1);
+        layout.addView(textView2, param2);
         layout.addView(textView3);
         layout.addView(textView4);
 
