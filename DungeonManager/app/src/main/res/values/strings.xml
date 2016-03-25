@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Dungeon Manager</string>
+    <string name="action_settings">Settings</string>
+    <string name="Title">DUNGEON MANAGERS.</string>
+    <string name="edit_message">Enter a message.</string>
+    <string name="name_message">Enter your name.</string>
+    <string name="type_message">Enter your type.</string>
+    <string name="class_message">Enter your class.</string>
+    <string name="strength_message">Strength number.</string>
+    <string name="button_send">Send</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_display_message">My Message</string>
+</resources>
