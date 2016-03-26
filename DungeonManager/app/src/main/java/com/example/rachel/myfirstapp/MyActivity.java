@@ -28,7 +28,7 @@ public class MyActivity extends AppCompatActivity {
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        SharedPreferences settings = getSharedPreferences(CharacterSheet.SHEETS.SHEET1.getTitle(), 0);
+        SharedPreferences settings = getSharedPreferences(CharacterSheet.getPrefsName(0), 0);
         chac = CharacterSheet.loadSheet(settings);
 
         EditText nameText =(EditText) findViewById(R.id.name_message);
