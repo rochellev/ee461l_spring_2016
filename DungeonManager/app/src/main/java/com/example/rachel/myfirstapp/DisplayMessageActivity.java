@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -52,15 +53,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
         textView4.setTextSize(40);
         textView4.setText(class_message);
 
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.content);
-        RelativeLayout.LayoutParams param1 = new
-                RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
-        param1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-
-        layout.addView(textView4, param1);
-        layout.addView(textView2, param1);
-        layout.addView(textView3, param1);
-        layout.addView(textView4, param1);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.content);
 
     }
 
