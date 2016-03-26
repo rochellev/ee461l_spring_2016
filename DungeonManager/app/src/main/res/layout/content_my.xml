@@ -3,12 +3,12 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#b48d21">
+    android:background="#38692c">
 
     <TextView
         android:id="@+id/title"
         android:text="@string/Title"
-        android:textColor="#0d10d4"
+        android:textColor="#f3f3f7"
         android:textSize="14sp"
         android:gravity="center_vertical"
         android:layout_marginTop="55dp"
