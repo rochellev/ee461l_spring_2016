@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,8 +18,9 @@ public class DisplayMessageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_message);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -28,7 +30,9 @@ public class DisplayMessageActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         Intent intent = getIntent();
         String message = intent.getStringExtra(MyActivity.EXTRA_MESSAGE);
@@ -36,36 +40,13 @@ public class DisplayMessageActivity extends AppCompatActivity {
         String class_message = intent.getStringExtra("class");
         String type = intent.getStringExtra("type");
 
-//        TextView textView1 = new TextView(this);
-//        textView1.setTextSize(40);
-//        textView1.setText(type);
-//
-//        TextView textView2 = new TextView(this);
-//        textView2.setTextSize(40);
-//        textView2.setText(name);
-//
-//        TextView textView3 = new TextView(this);
-//        textView3.setTextSize(40);
-//        textView3.setText(message);
-//
-//        TextView textView4 = new TextView(this);
-//        textView4.setTextSize(40);
-//        textView4.setText(class_message);
+        TextView classTxt = (TextView) findViewById(R.id.CharacterClass);
+        TextView raceTxt = (TextView) findViewById(R.id.CharacterRace);
+        TextView nameTxt = (TextView) findViewById(R.id.CharacterName);
 
-        TextView textView4 = new TextView(this);
-        textView4.setTextSize(40);
-        textView4.setText(class_message + "\n" + name + "\n" +  "i dont feel liketyping");
-
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.content);
-        RelativeLayout.LayoutParams param1 = new
-                RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
-        param1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-
-        layout.addView(textView4, param1);
-//        layout.addView(textView2, param1);
-//        layout.addView(textView3, param1);
-//        layout.addView(textView4, param1);
-
+        nameTxt.setText(name);
+        raceTxt.setText(type);
+        classTxt.setText(class_message);
     }
 
     @Override

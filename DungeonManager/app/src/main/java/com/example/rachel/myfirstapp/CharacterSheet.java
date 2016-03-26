@@ -10,7 +10,7 @@ import android.content.SharedPreferences;
  * - load data from a saved character sheet into the player UI
  */
 public class CharacterSheet {
-
+/*
     public enum SHEETS {
       SHEET1("CharSht1"), SHEET2("CharSht2"), SHEET3("CharSht3");
 
@@ -24,6 +24,8 @@ public class CharacterSheet {
             return title;
         }
     }
+
+    */
     private static final String PREFS_NAME = "CharacterSheet";
     private static final String DEFAULT_CHAR_NAME = "THISisNoTAcharACtERName";
 
@@ -52,6 +54,10 @@ public class CharacterSheet {
         wis = 0;
         cha = 0;
         level = 0;
+    }
+
+    public static String getPrefsName(int n){
+        return "CharSht" + n;
     }
 
     public static CharacterSheet loadSheet(SharedPreferences set){
