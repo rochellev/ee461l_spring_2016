@@ -18,7 +18,7 @@ public class MyActivity extends AppCompatActivity {
 
     private static final String PREFS_NAME = "CharacterSheet";
     private static final String DEFAULT_CHAR_NAME = "THISisNoTAcharACtERName";
-
+    private CharacterSheet chac;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,17 +28,16 @@ public class MyActivity extends AppCompatActivity {
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        if(settings.getString("cName", DEFAULT_CHAR_NAME) != DEFAULT_CHAR_NAME){
-            EditText editText =(EditText) findViewById(R.id.edit_message);
-            EditText nameText =(EditText) findViewById(R.id.name_message);
-            EditText typeText =(EditText) findViewById(R.id.type_message);
-            EditText classText =(EditText) findViewById(R.id.class_message);
+        SharedPreferences settings = getSharedPreferences(CharacterSheet.SHEETS.SHEET1.getTitle(), 0);
+        chac = CharacterSheet.loadSheet(settings);
 
-            nameText.setText(settings.getString("cName", DEFAULT_CHAR_NAME));
-            typeText.setText(settings.getString("cType", "noType"));
-            classText.setText(settings.getString("cClass", "noClass"));
-        }
+        EditText nameText =(EditText) findViewById(R.id.name_message);
+        EditText typeText =(EditText) findViewById(R.id.type_message);
+        EditText classText =(EditText) findViewById(R.id.class_message);
+
+        nameText.setText(chac.name);
+        typeText.setText(chac.race);
+        classText.setText(chac.cclass);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,13 +83,12 @@ public class MyActivity extends AppCompatActivity {
         String type_message = typeText.getText().toString();
         String class_message = classText.getText().toString();
 
+        chac.cclass = class_message;
+        chac.name = name_message;
+        chac.race = type_message;
+        
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString("cName", name_message);
-        editor.putString("cType", type_message);
-        editor.putString("cClass",class_message);
-        // Commit the edits!
-        editor.commit();
+        chac.saveSheet(settings);
 
         intent.putExtra(EXTRA_MESSAGE, message);
         intent.putExtra("name", name_message);
