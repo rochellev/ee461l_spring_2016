@@ -1,12 +1,10 @@
-package dice;/*
- * This is a simple coin flipping application
- * Use in any role playing video game or table top game
- * Can be used in any existing java project
- * Programmed specifically in jre7
- * Code written by Jester155
- * For Shana
- */
-
+package dice;
+/**
+* Created by Nico Cortes on 3/24/2016.
+* simple dice roller to...
+* - roll a single die
+* - roll multiple of the same die
+*/
 import java.util.Random;
 
 public enum Die {
@@ -27,7 +25,7 @@ public enum Die {
 
     public int roll(int amount) {
         int ret = 0;
-        for(int i = 0; i < amount; ++i) {
+        for(int i = 0; i < amount; ++i) { // need to do to maintain probability
             ret += this.roll();
         }
         return ret;

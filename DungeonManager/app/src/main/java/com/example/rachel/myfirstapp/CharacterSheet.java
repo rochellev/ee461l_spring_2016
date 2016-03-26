@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 /**
  * Created by William Glanton on 3/24/2016.
- * Interfacing to...
+ * player interfacing to...
  * - save data entered into a character sheet
  * - load data from a saved character sheet into the player UI
  */
