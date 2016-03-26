@@ -36,25 +36,21 @@ public class DisplayMessageActivity extends AppCompatActivity {
         String class_message = intent.getStringExtra("class");
         String type = intent.getStringExtra("type");
 
-//        TextView textView1 = new TextView(this);
-//        textView1.setTextSize(40);
-//        textView1.setText(type);
-//
-//        TextView textView2 = new TextView(this);
-//        textView2.setTextSize(40);
-//        textView2.setText(name);
-//
-//        TextView textView3 = new TextView(this);
-//        textView3.setTextSize(40);
-//        textView3.setText(message);
-//
-//        TextView textView4 = new TextView(this);
-//        textView4.setTextSize(40);
-//        textView4.setText(class_message);
+        TextView textView1 = new TextView(this);
+        textView1.setTextSize(40);
+        textView1.setText(type);
+
+        TextView textView2 = new TextView(this);
+        textView2.setTextSize(40);
+        textView2.setText(name);
+
+        TextView textView3 = new TextView(this);
+        textView3.setTextSize(40);
+        textView3.setText(message);
 
         TextView textView4 = new TextView(this);
         textView4.setTextSize(40);
-        textView4.setText(class_message + "\n" + name + "\n" +  "i dont feel liketyping");
+        textView4.setText(class_message);
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.content);
         RelativeLayout.LayoutParams param1 = new
@@ -62,9 +58,9 @@ public class DisplayMessageActivity extends AppCompatActivity {
         param1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 
         layout.addView(textView4, param1);
-//        layout.addView(textView2, param1);
-//        layout.addView(textView3, param1);
-//        layout.addView(textView4, param1);
+        layout.addView(textView2, param1);
+        layout.addView(textView3, param1);
+        layout.addView(textView4, param1);
 
     }
 
