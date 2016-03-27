@@ -5,9 +5,12 @@ import android.content.SharedPreferences;
 
 /**
  * Created by William Glanton on 3/24/2016.
+ * player interfacing to...
+ * - save data entered into a character sheet
+ * - load data from a saved character sheet into the player UI
  */
 public class CharacterSheet {
-
+/*
     public enum SHEETS {
       SHEET1("CharSht1"), SHEET2("CharSht2"), SHEET3("CharSht3");
 
@@ -21,6 +24,8 @@ public class CharacterSheet {
             return title;
         }
     }
+
+    */
     private static final String PREFS_NAME = "CharacterSheet";
     private static final String DEFAULT_CHAR_NAME = "THISisNoTAcharACtERName";
 
@@ -34,7 +39,7 @@ public class CharacterSheet {
     int spd;
     int hp;
 
-    private void CharaterSheet(){
+    private CharacterSheet(){
         name = "noface";
         race = "norace";
         cclass = "noclass";
@@ -51,10 +56,14 @@ public class CharacterSheet {
         level = 0;
     }
 
+    public static String getPrefsName(int n){
+        return "CharSht" + n;
+    }
+
     public static CharacterSheet loadSheet(SharedPreferences set){
         CharacterSheet ret = new CharacterSheet();
 
-        if(set.getString("cName", DEFAULT_CHAR_NAME) != DEFAULT_CHAR_NAME){
+        if(!set.getString("cName", DEFAULT_CHAR_NAME).equals(DEFAULT_CHAR_NAME)){
             ret.name = set.getString("cName", DEFAULT_CHAR_NAME);
             ret.race = set.getString("cRace", DEFAULT_CHAR_NAME);
             ret.cclass = set.getString("cClass", DEFAULT_CHAR_NAME);

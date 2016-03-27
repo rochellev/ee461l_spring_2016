@@ -3,18 +3,26 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#38692c">
+    android:background="#cec1c2">
 
     <TextView
         android:id="@+id/title"
         android:text="@string/Title"
         android:textColor="#f3f3f7"
-        android:textSize="14sp"
+        android:textSize="25sp"
         android:gravity="center_vertical"
         android:layout_marginTop="55dp"
         android:layout_width="wrap_content"
-        android:typeface="sans"
-        android:layout_height="20dp"/>
+        android:typeface="serif"
+        android:fontFamily="sans-serif-thin"
+        android:layout_height="30dp"/>
+
+    <ListView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/theListView">
+    </ListView>
 
     <EditText
         android:id="@+id/edit_message"
@@ -47,5 +55,6 @@
         android:text="@string/button_send"
         android:onClick="sendMessage"
         android:id="@+id/button" />
+
 
 </LinearLayout>
