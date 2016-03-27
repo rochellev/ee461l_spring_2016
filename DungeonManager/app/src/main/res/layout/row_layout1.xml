@@ -13,6 +13,8 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:padding="15dp"
+        android:typeface="monospace"
+        android:textColor="#4b0000"
         />
 
 </LinearLayout>

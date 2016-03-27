@@ -18,8 +18,6 @@ import android.widget.Toast;
 public class MyActivity extends AppCompatActivity {
 
     public final static String EXTRA_MESSAGE = "com.example.rachel.myfirstapp.MESSAGE";
-
-    private static final String PREFS_NAME = "CharacterSheet";
     private CharacterSheet chac;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,13 +78,14 @@ public class MyActivity extends AppCompatActivity {
         chac.name = name_message;
         chac.race = type_message;
         
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences settings = getSharedPreferences(CharacterSheet.getPrefsName(0), 0);
         chac.saveSheet(settings);
 
         intent.putExtra(EXTRA_MESSAGE, message);
-        intent.putExtra("name", name_message);
-        intent.putExtra("type", type_message);
-        intent.putExtra("class", class_message);
+        //intent.putExtra("name", name_message);
+        //intent.putExtra("type", type_message);
+        //intent.putExtra("class", class_message);
+        intent.putExtra("CharacterSheet", chac);
 
         startActivity(intent);
     }

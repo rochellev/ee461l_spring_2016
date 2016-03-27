@@ -40,10 +40,11 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MyActivity.EXTRA_MESSAGE);
-        String name = intent.getStringExtra("name");
-        String class_message = intent.getStringExtra("class");
-        String type = intent.getStringExtra("type");
+        CharacterSheet ch = (CharacterSheet) intent.getSerializableExtra("CharacterSheet");
+//        String message = intent.getStringExtra(MyActivity.EXTRA_MESSAGE);
+//        String name = intent.getStringExtra("name");
+//        String cclass = intent.getStringExtra("class");
+//        String race = intent.getStringExtra("type");
 
 
 
@@ -55,7 +56,20 @@ public class DisplayMessageActivity extends AppCompatActivity {
 //        raceTxt.setText(type);
 //        classTxt.setText(class_message);
 
-        String [] DD = {"Name : ", "Race : ", "Class : "};
+        String [] DD = {
+                "Name  : " + ch.name,
+                "Race  : " + ch.race,
+                "Class : " + ch.cclass,
+                "Level : " + ch.level,
+                "Init  : " + ch.init,
+                "Spd   : " + ch.spd,
+                "Str   : " + ch.str,
+                "Dex   : " + ch.dex,
+                "Con   : " + ch.con,
+                "Int   : " + ch.inl,
+                "Wis   : " + ch.wis,
+                "Cha   : " + ch.cha,
+        };
 
         ListAdapter theAdapter = new ArrayAdapter<String>(this, R.layout.row_layout1, R.id.textView1, DD);
 
