@@ -27,12 +27,6 @@
         android:id="@+id/button"
         android:layout_gravity="center_horizontal" />
 
-    <ListView
-        android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/theListView">
-    </ListView>
 
     <EditText
         android:id="@+id/edit_message"

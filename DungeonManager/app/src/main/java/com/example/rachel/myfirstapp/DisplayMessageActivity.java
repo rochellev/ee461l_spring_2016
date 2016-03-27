@@ -8,9 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DisplayMessageActivity extends AppCompatActivity {
 
@@ -40,13 +45,32 @@ public class DisplayMessageActivity extends AppCompatActivity {
         String class_message = intent.getStringExtra("class");
         String type = intent.getStringExtra("type");
 
-        TextView classTxt = (TextView) findViewById(R.id.CharacterClass);
-        TextView raceTxt = (TextView) findViewById(R.id.CharacterRace);
-        TextView nameTxt = (TextView) findViewById(R.id.CharacterName);
 
-        nameTxt.setText(name);
-        raceTxt.setText(type);
-        classTxt.setText(class_message);
+
+//        TextView classTxt = (TextView) findViewById(R.id.CharacterClass);
+//        TextView raceTxt = (TextView) findViewById(R.id.CharacterRace);
+//        TextView nameTxt = (TextView) findViewById(R.id.CharacterName);
+//
+//        nameTxt.setText(name);
+//        raceTxt.setText(type);
+//        classTxt.setText(class_message);
+
+        String [] DD = {"Name : ", "Race : ", "Class : "};
+
+        ListAdapter theAdapter = new ArrayAdapter<String>(this, R.layout.row_layout1, R.id.textView1, DD);
+
+        ListView theListView  = (ListView) findViewById(R.id.theListView);
+
+        theListView.setAdapter(theAdapter);
+
+        theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String DD_picked = "You selected " + String.valueOf(parent.getItemAtPosition(position));
+
+                Toast.makeText(DisplayMessageActivity.this, DD_picked, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
