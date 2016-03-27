@@ -7,8 +7,10 @@
     <string name="type_message">Enter your type</string>
     <string name="class_message">Enter your class</string>
     <string name="strength_message">Strength number</string>
-    <string name="button_send">Send</string>
+    <string name="button_send">Submit</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_display_message">My Message</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
 </resources>
