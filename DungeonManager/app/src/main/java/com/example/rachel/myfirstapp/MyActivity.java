@@ -20,7 +20,6 @@ public class MyActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.example.rachel.myfirstapp.MESSAGE";
 
     private static final String PREFS_NAME = "CharacterSheet";
-    private static final String DEFAULT_CHAR_NAME = "THISisNoTAcharACtERName";
     private CharacterSheet chac;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,23 +38,6 @@ public class MyActivity extends AppCompatActivity {
         nameText.setText(chac.name);
         typeText.setText(chac.race);
         classText.setText(chac.cclass);
-
-        String [] DD = {"Name", "Title", "Class", "Stuff"};
-
-        ListAdapter theAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, DD);
-
-        ListView theListView  = (ListView) findViewById(R.id.theListView);
-
-        theListView.setAdapter(theAdapter);
-
-        theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-               @Override
-               public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                   String DD_picked = "You selected " + String.valueOf(parent.getItemAtPosition(position));
-
-                   Toast.makeText(MyActivity.this, DD_picked, Toast.LENGTH_SHORT).show();
-               }
-           });
 
     }
 
