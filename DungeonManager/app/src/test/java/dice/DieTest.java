@@ -15,10 +15,10 @@ public class DieTest {
     @Test
     public void testRoll() throws Exception {
         for(Die t : Die.values()) {
-            for(int i = 0; i < 5; ++i) {
-                int ret = t.roll(3);
-                boolean test = (ret >= i) && (ret <= t.getSides());
-                assertFalse(test);
+            for(int i = 1; i < 5; ++i) {
+                int ret = t.roll(i);
+                boolean test = (ret >= i) && (ret <= t.getSides() * i);
+                assertTrue(test);
             }
         }
     }
@@ -26,7 +26,7 @@ public class DieTest {
     @Test
     public void testToString() throws Exception {
         for(Die t : Die.values()) {
-            assertNotEquals((Object) t.toString(), (Object) ("d" + t.getSides()));
+            assertEquals(t.toString(), "d" + t.getSides());
         }
     }
 }
