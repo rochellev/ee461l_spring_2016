@@ -5,15 +5,17 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 
 public class MyActivity extends AppCompatActivity {
 
@@ -42,7 +44,7 @@ public class MyActivity extends AppCompatActivity {
 
         String [] DD = {"Name", "Title", "Class", "Stuff"};
 
-        ListAdapter theAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, DD);
+        ListAdapter theAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, DD);
 
         ListView theListView  = (ListView) findViewById(R.id.theListView);
 
@@ -81,31 +83,46 @@ public class MyActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /** Called when the user clicks the Send button */
-    public void sendMessage(View view){
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-        EditText editText =(EditText) findViewById(R.id.edit_message);
-        EditText nameText =(EditText) findViewById(R.id.name_message);
-        EditText typeText =(EditText) findViewById(R.id.type_message);
-        EditText classText =(EditText) findViewById(R.id.class_message);
+    /** Called when the user clicks the Submit button */
+    public void submitFields(View view){
 
-        String message = editText.getText().toString();
-        String name_message = nameText.getText().toString();
-        String type_message = typeText.getText().toString();
-        String class_message = classText.getText().toString();
+        NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(this);
 
-        chac.cclass = class_message;
-        chac.name = name_message;
-        chac.race = type_message;
-        
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        chac.saveSheet(settings);
+        dialogBuilder
+                .withTitle(getString(R.string.submit_dialog_title))
+                .withMessage(getString(R.string.submit_fields_dialog_message))
+                .withButton1Text(getString(R.string.dialog_yes))
+                .setButton1Click(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MyActivity.this, DisplayMessageActivity.class);
+                        EditText editText = (EditText) findViewById(R.id.edit_message);
+                        EditText nameText = (EditText) findViewById(R.id.name_message);
+                        EditText typeText = (EditText) findViewById(R.id.type_message);
+                        EditText classText = (EditText) findViewById(R.id.class_message);
 
-        intent.putExtra(EXTRA_MESSAGE, message);
-        intent.putExtra("name", name_message);
-        intent.putExtra("type", type_message);
-        intent.putExtra("class", class_message);
+                        String message = editText.getText().toString();
+                        String name_message = nameText.getText().toString();
+                        String type_message = typeText.getText().toString();
+                        String class_message = classText.getText().toString();
 
-        startActivity(intent);
+                        chac.cclass = class_message;
+                        chac.name = name_message;
+                        chac.race = type_message;
+
+                        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                        chac.saveSheet(settings);
+
+                        intent.putExtra(EXTRA_MESSAGE, message);
+                        intent.putExtra("name", name_message);
+                        intent.putExtra("type", type_message);
+                        intent.putExtra("class", class_message);
+
+                        startActivity(intent);
+                    }
+                })
+                .withButton2Text(getString(R.string.dialog_no))
+                .show();
+
     }
 }
