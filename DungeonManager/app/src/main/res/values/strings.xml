@@ -11,6 +11,8 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_display_message">My Message</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
 
     <string name="dialog_yes">Yes</string>
     <string name="dialog_no">No</string>

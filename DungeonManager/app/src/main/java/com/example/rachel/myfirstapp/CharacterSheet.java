@@ -3,13 +3,15 @@ package com.example.rachel.myfirstapp;
 import android.app.Activity;
 import android.content.SharedPreferences;
 
+import java.io.Serializable;
+
 /**
  * Created by William Glanton on 3/24/2016.
  * player interfacing to...
  * - save data entered into a character sheet
  * - load data from a saved character sheet into the player UI
  */
-public class CharacterSheet {
+public class CharacterSheet implements Serializable {
 /*
     public enum SHEETS {
       SHEET1("CharSht1"), SHEET2("CharSht2"), SHEET3("CharSht3");

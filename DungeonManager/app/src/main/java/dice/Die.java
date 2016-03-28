@@ -18,12 +18,16 @@ public enum Die {
         _sides = s;
     }
 
-    public int roll() {
-        Random r = new Random();
-        return r.nextInt(_sides + 1); //add 1 to make _sides the max possible value
+    public int getSides() {
+        return _sides;
     }
 
-    public int roll(int amount) {
+    public int roll() {
+        Random r = new Random();
+        return r.nextInt(_sides) + 1; //add 1 to make range from 1 to _sides
+    }
+
+    public int roll(int amount) { //if amount < 0 will just return 0
         int ret = 0;
         for(int i = 0; i < amount; ++i) { // need to do to maintain probability
             ret += this.roll();
