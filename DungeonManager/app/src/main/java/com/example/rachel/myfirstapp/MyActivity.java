@@ -1,25 +1,28 @@
 package com.example.rachel.myfirstapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.ArrayAdapter;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.content.res.Configuration;
 
-import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 public class MyActivity extends AppCompatActivity {
     private ListView mDrawerList;
@@ -30,6 +33,12 @@ public class MyActivity extends AppCompatActivity {
 
     public final static String EXTRA_MESSAGE = "com.example.rachel.myfirstapp.MESSAGE";
     private CharacterSheet chac;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +47,8 @@ public class MyActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mDrawerList = (ListView)findViewById(R.id.navList);mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.navList);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mActivityTitle = getTitle().toString();
 
         addDrawerItems();
@@ -50,17 +60,21 @@ public class MyActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences(CharacterSheet.getPrefsName(0), 0);
         chac = CharacterSheet.loadSheet(settings);
 
-        EditText nameText =(EditText) findViewById(R.id.name_message);
-        EditText typeText =(EditText) findViewById(R.id.type_message);
-        EditText classText =(EditText) findViewById(R.id.class_message);
+        EditText nameText = (EditText) findViewById(R.id.name_message);
+        EditText typeText = (EditText) findViewById(R.id.type_message);
+        EditText classText = (EditText) findViewById(R.id.class_message);
 
         nameText.setText(chac.name);
         typeText.setText(chac.race);
         classText.setText(chac.cclass);
 
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
+
     private void addDrawerItems() {
-        String[] osArray = { "Android", "iOS", "Windows", "OS X", "Linux" };
+        String[] osArray = {"Android", "iOS", "Windows", "OS X", "Linux"};
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
 
@@ -133,35 +147,29 @@ public class MyActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /** Called when the user clicks the Submit button */
-    public void submitFields(View view){
+    /**
+     * Called when the user clicks the Submit button
+     */
+    public void submitFields(View view) {
 
-        NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(this);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyActivity.this);
 
-        chac.cclass = class_message;
-        chac.name = name_message;
-        chac.race = type_message;
-        
-        SharedPreferences settings = getSharedPreferences(CharacterSheet.getPrefsName(0), 0);
-        chac.saveSheet(settings);
         dialogBuilder
-                .withTitle(getString(R.string.submit_dialog_title))
-                .withMessage(getString(R.string.submit_fields_dialog_message))
-                .withButton1Text(getString(R.string.dialog_yes))
-                .setButton1Click(new View.OnClickListener() {
+            .setCancelable(true)
+            .setTitle(R.string.submit_dialog_title)
+            .setMessage(R.string.submit_fields_dialog_message)
+            .setPositiveButton(
+                R.string.dialog_yes,
+                new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
+                    public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(MyActivity.this, DisplayMessageActivity.class);
                         EditText editText = (EditText) findViewById(R.id.edit_message);
                         EditText nameText = (EditText) findViewById(R.id.name_message);
                         EditText typeText = (EditText) findViewById(R.id.type_message);
                         EditText classText = (EditText) findViewById(R.id.class_message);
 
-        intent.putExtra(EXTRA_MESSAGE, message);
-        //intent.putExtra("name", name_message);
-        //intent.putExtra("type", type_message);
-        //intent.putExtra("class", class_message);
-        intent.putExtra("CharacterSheet", chac);
+                        intent.putExtra("CharacterSheet", chac);
                         String message = editText.getText().toString();
                         String name_message = nameText.getText().toString();
                         String type_message = typeText.getText().toString();
@@ -171,7 +179,7 @@ public class MyActivity extends AppCompatActivity {
                         chac.name = name_message;
                         chac.race = type_message;
 
-                        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                        SharedPreferences settings = getSharedPreferences(CharacterSheet.getPrefsName(0), 0);
                         chac.saveSheet(settings);
 
                         intent.putExtra(EXTRA_MESSAGE, message);
@@ -180,10 +188,59 @@ public class MyActivity extends AppCompatActivity {
                         intent.putExtra("class", class_message);
 
                         startActivity(intent);
-                    }
-                })
-                .withButton2Text(getString(R.string.dialog_no))
-                .show();
 
+                    }
+                }
+            )
+            .setNegativeButton(
+                R.string.dialog_no,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //do nothing - player does not want to save stats
+                    }
+                }
+            )
+            .show();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "My Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.example.rachel.myfirstapp/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "My Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.example.rachel.myfirstapp/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
     }
 }

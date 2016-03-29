@@ -19,8 +19,8 @@
 
     <string name="submit_dialog_title">Are you sure?</string>
 
-    <string name="submit_fields_dialog_message">Your character attributes will be saved and \n
-                                                you will only be able to edit them with \n
+    <string name="submit_fields_dialog_message">Your character attributes will be saved and\n
+                                                you will only be able to edit them with\n
                                                 the DM\'s permission.</string>
 
 
