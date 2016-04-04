@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#cec1c2">
+
+    <TextView
+        android:id="@+id/title"
+        android:text="@string/title_activity_picker"
+        android:textColor="#000008"
+        android:textSize="25sp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="55dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="wrap_content"
+        android:typeface="serif"
+        android:fontFamily="sans-serif-thin"
+        android:layout_height="30dp"/>
+
+    <Button
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/DM_button"
+        android:onClick="submitFields"
+        android:id="@+id/buttonDM"
+        android:layout_gravity="center_horizontal" />
+    <Button
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/Player_button"
+        android:onClick="submitFields"
+        android:id="@+id/buttonPlayer"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>

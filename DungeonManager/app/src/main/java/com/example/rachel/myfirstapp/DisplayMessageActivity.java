@@ -41,20 +41,6 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         CharacterSheet ch = (CharacterSheet) intent.getSerializableExtra("CharacterSheet");
-//        String message = intent.getStringExtra(MyActivity.EXTRA_MESSAGE);
-//        String name = intent.getStringExtra("name");
-//        String cclass = intent.getStringExtra("class");
-//        String race = intent.getStringExtra("type");
-
-
-
-//        TextView classTxt = (TextView) findViewById(R.id.CharacterClass);
-//        TextView raceTxt = (TextView) findViewById(R.id.CharacterRace);
-//        TextView nameTxt = (TextView) findViewById(R.id.CharacterName);
-//
-//        nameTxt.setText(name);
-//        raceTxt.setText(type);
-//        classTxt.setText(class_message);
 
         String [] DD = {
                 "Name  : " + ch.name,
