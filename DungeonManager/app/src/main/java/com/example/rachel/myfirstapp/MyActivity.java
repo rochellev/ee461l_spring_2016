@@ -75,7 +75,7 @@ public class MyActivity extends AppCompatActivity {
 
     private void addDrawerItems() {
         String[] osArray = {"Android", "iOS", "Windows", "OS X", "Linux"};
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
+        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
 
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -151,7 +151,10 @@ public class MyActivity extends AppCompatActivity {
      * Called when the user clicks the Submit button
      */
     public void submitFields(View view) {
-
+        //@nico - added a dialog to commit changes made to character sheet
+        // - simple yes or no buttons
+        // - yes goes to character sheet
+        // - no does nothing and remains on character sheet editor
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyActivity.this);
 
         dialogBuilder
