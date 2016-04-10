@@ -6,14 +6,6 @@ package com.example.rachel.myfirstapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 public class SplashActivity extends Activity {
 
@@ -30,7 +22,7 @@ public class SplashActivity extends Activity {
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }finally{
-                    Intent intent = new Intent(SplashActivity.this,MyActivity.class);
+                    Intent intent = new Intent(SplashActivity.this,PickerActivity.class);
                     startActivity(intent);
                 }
             }

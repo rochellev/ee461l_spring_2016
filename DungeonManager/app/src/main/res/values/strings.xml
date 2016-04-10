@@ -22,6 +22,10 @@
     <string name="submit_fields_dialog_message">Your character attributes will be saved and\n
                                                 you will only be able to edit them with\n
                                                 the DM\'s permission.</string>
+    <string name="title_activity_picker">Status Choice</string>
+    <string name="DM_button">Dungeon Master</string>
+    <string name="Player_button">Player</string>
+
 
 
 </resources>

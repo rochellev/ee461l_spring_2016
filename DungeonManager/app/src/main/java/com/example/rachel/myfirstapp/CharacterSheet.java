@@ -41,23 +41,6 @@ public class CharacterSheet implements Serializable {
     int spd;
     int hp;
 
-    private CharacterSheet(){
-        name = "noface";
-        race = "norace";
-        cclass = "noclass";
-        hp = 0;
-        spd = 0;
-        init = 0;
-        ac = 0;
-        str = 0;
-        dex = 0;
-        con = 0;
-        inl = 0;
-        wis = 0;
-        cha = 0;
-        level = 0;
-    }
-
     public static String getPrefsName(int n){
         return "CharSht" + n;
     }
