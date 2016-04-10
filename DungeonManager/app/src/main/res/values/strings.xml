@@ -25,7 +25,11 @@
     <string name="title_activity_picker">Status Choice</string>
     <string name="DM_button">Dungeon Master</string>
     <string name="Player_button">Player</string>
+    <string name="title_activity_dmactivity">DMactivity</string>
+    <string name="title_activity_text_fragment">TextFragment</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

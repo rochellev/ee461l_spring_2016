@@ -45,7 +45,11 @@
         <activity
             android:name=".PickerActivity"
             android:label="@string/title_activity_picker"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DMactivity"
+            android:label="@string/title_activity_dmactivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

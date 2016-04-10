@@ -36,7 +36,7 @@ public class PickerActivity extends AppCompatActivity {
     }
 
     public void DMChoice(View view){
-        Intent intent = new Intent(this, MyActivity.class);
+        Intent intent = new Intent(this, DMactivity.class);
         intent.putExtra("DM", true);
         startActivity(intent);
     }
