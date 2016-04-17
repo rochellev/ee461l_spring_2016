@@ -30,7 +30,8 @@ public class CharacterSheet implements Serializable {
     */
     private static final String PREFS_NAME = "CharacterSheet";
     private static final String DEFAULT_CHAR_NAME = "THISisNoTAcharACtERName";
-
+    private static final String DEFAULT_RACE_NAME = "THISisNoTARACEName";
+    private static final String DEFAULT_CLASS_NAME = "THISisNoTAclASSnaMe";
     String name;
     String race;
     String cclass;
@@ -41,8 +42,41 @@ public class CharacterSheet implements Serializable {
     int spd;
     int hp;
 
+    public static int getModifier(int stat){
+        return (stat-10)/2;
+    }
+
     public static String getPrefsName(int n){
         return "CharSht" + n;
+    }
+
+    private CharacterSheet(){
+        name = DEFAULT_CHAR_NAME;
+        race = DEFAULT_RACE_NAME;
+        cclass = DEFAULT_CLASS_NAME;
+        level = 0;
+        str = 0; dex = 0; con = 0; inl = 0; wis = 0; cha = 0;
+        ac = 0;
+        init = 0;
+        spd = 0;
+        hp = 0;
+    }
+
+    public CharacterSheet(CharacterSheet cs){
+        name = cs.name;
+        race = cs.race;
+        cclass = cs.cclass;
+        level = cs.level;
+        str = cs.str;
+        dex = cs.dex;
+        con = cs.con;
+        inl = cs.inl;
+        wis = cs.wis;
+        cha = cs.cha;
+        ac = cs.ac;
+        init = cs.init;
+        spd = cs.spd;
+        hp = cs.hp;
     }
 
     public static CharacterSheet loadSheet(SharedPreferences set){
