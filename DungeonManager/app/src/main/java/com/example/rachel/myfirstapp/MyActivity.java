@@ -58,6 +58,7 @@ public class MyActivity extends AppCompatActivity {
         addDrawerItems();
         setupDrawer();
 
+        //adds the action bar for navigation in the right hand corner
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 

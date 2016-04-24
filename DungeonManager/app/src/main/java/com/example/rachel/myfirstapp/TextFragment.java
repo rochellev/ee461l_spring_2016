@@ -1,14 +1,11 @@
-package com.ebookfrenzy.fragmentexample;
+package com.example.rachel.myfirstapp;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.rachel.myfirstapp.R;
-
-public class TextFragment extends Fragment {
+public class TextFragment extends android.support.v4.app.Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater,

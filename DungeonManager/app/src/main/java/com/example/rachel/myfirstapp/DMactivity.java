@@ -1,52 +1,107 @@
 package com.example.rachel.myfirstapp;
 
-import android.content.res.Configuration;
-import android.net.Uri;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.support.v4.view.GravityCompat;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 public class DMactivity extends AppCompatActivity {
 
-    // creating the navigation bar variables
-    private ListView mDrawerList;
-    private DrawerLayout mDrawerLayout;
-    private ArrayAdapter<String> mAdapter;
-    private ActionBarDrawerToggle mDrawerToggle;
-    private String mActivityTitle;
-
-    private GoogleApiClient client;
+    private DrawerLayout mDrawer;
+    private Toolbar toolbar;
+    private NavigationView nvDrawer;
+    private FragmentManager fragMang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dmactivity);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        // Set a Toolbar to replace the ActionBar.
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // creating the navigation bar
-        mDrawerList = (ListView) findViewById(R.id.navList);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mActivityTitle = getTitle().toString();
+        // Find our drawer view
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        // Find our Nav view
+        nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        // Setup drawer view
+        setupDrawerContent(nvDrawer);
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // The action bar home/up action should open or close the drawer.
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawer.openDrawer(GravityCompat.START);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    // `onPostCreate` called when activity start-up is complete after `onStart()`
+    // NOTE! Make sure to override the method with only a single `Bundle` argument
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+    }
+
+    private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        selectDrawerItem(menuItem);
+                        return true;
+                    }
+                });
+    }
+
+
+    public void selectDrawerItem(MenuItem menuItem) {
+        // Create a new fragment and specify the fragment to show based on nav item clicked
+        Fragment fragment = null;
+        Class fragmentClass;
+        switch(menuItem.getItemId()) {
+            case R.id.nav_first_fragment:
+                fragmentClass = TextFragment.class;
+                break;
+//            case R.id.nav_second_fragment:
+//                fragmentClass = SecondFragment.class;
+//                break;
+//            case R.id.nav_third_fragment:
+//                fragmentClass = ThirdFragment.class;
+//                break;
+            default:
+                fragmentClass = TextFragment.class;
+        }
+
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+
+        // Highlight the selected item has been done by NavigationView
+        menuItem.setChecked(true);
+        // Set action bar title
+        setTitle(menuItem.getTitle());
+        // Close the navigation drawer
+        mDrawer.closeDrawers();
+    }
+
 }
