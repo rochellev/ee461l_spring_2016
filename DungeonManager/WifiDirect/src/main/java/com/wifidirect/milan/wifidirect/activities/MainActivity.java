@@ -17,7 +17,7 @@ import com.wifidirect.milan.wifidirect.R;
 import com.wifidirect.milan.wifidirect.fragments.DevicesList;
 import com.wifidirect.milan.wifidirect.services.WifiDirectService;
 
-public class MainActivity extends AppCompatActivity implements ServiceConnection{
+public class MainActivity extends AppCompatActivity implements ServiceConnection {
     public static WifiDirectService mService;
     public static boolean isBind;
     public Toolbar mToolbar;

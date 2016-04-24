@@ -34,7 +34,8 @@
             android:layout_height="36dp"
             android:background="@drawable/ic_send_black_24dp"
             android:layout_marginLeft="2dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="sendMessage" />
 
     </LinearLayout>
 

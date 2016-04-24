@@ -16,25 +16,21 @@ import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
 import com.wifidirect.milan.wifidirect.Events;
-import com.wifidirect.milan.wifidirect.utils.MessageUtils;
-import com.wifidirect.milan.wifidirect.listeners.MessageListener;
 import com.wifidirect.milan.wifidirect.R;
 import com.wifidirect.milan.wifidirect.WiFiDirectConstants;
 import com.wifidirect.milan.wifidirect.WifiDirectApplication;
 import com.wifidirect.milan.wifidirect.activities.MainActivity;
 import com.wifidirect.milan.wifidirect.adapters.ChatAdapter;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import com.wifidirect.milan.wifidirect.listeners.MessageListener;
+import com.wifidirect.milan.wifidirect.utils.MessageUtils;
 
 /**
  * Created by milan on 26.11.15..
  */
 public class ChatDirect extends Fragment implements MessageListener {
     private static final String TAG = "ChatDirect ";
-    @Bind(R.id.recycler_view) RecyclerView mRecyclerView;
-    @Bind(R.id.edittextmessage) EditText mEditText;
+    RecyclerView mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view);
+    EditText mEditText = (EditText) getActivity().findViewById(R.id.edittextmessage);
     private ChatAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private String chatName;
@@ -64,9 +60,6 @@ public class ChatDirect extends Fragment implements MessageListener {
             ((MainActivity) getActivity()).mToolbar.setSubtitle(chatName);
         }
 
-        // bind butter knife lib
-        ButterKnife.bind(this, view);
-
         // register otto
         WifiDirectApplication.getBus().register(this);
 
@@ -88,8 +81,7 @@ public class ChatDirect extends Fragment implements MessageListener {
     }
 
 
-    @OnClick(R.id.imagebuttonsend)
-    public void sendMessage() {
+    public void sendMessage(View view) {
         // get message from edittext
         String message = mEditText.getText().toString();
 
@@ -173,8 +165,7 @@ public class ChatDirect extends Fragment implements MessageListener {
     public void onDestroyView() {
         super.onDestroyView();
 
-        // unbind butterknife and wifidirect
-        ButterKnife.unbind(this);
+
         WifiDirectApplication.getBus().unregister(this);
 
         // stop message hendler

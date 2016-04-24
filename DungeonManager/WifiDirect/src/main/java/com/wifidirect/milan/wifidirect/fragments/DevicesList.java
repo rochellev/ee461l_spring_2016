@@ -3,12 +3,9 @@ package com.wifidirect.milan.wifidirect.fragments;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.wifi.WifiManager;
-import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
-import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,7 +13,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,23 +34,18 @@ import com.wifidirect.milan.wifidirect.WifiDirectApplication;
 import com.wifidirect.milan.wifidirect.activities.MainActivity;
 import com.wifidirect.milan.wifidirect.adapters.DeviceAdapter;
 import com.wifidirect.milan.wifidirect.listeners.MessageListener;
-import com.wifidirect.milan.wifidirect.notifications.WifiNotification;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by milan on 25.11.15..
  */
 public class DevicesList extends Fragment implements MessageListener{
     private static final String TAG = "DeviceList";
-    @Bind(R.id.listview) ListView mListView;
-    @Bind(R.id.emptyrelative) RelativeLayout mRelativeLayoutEmpty;
-    @Bind(R.id.fab) FloatingActionButton mFloatingActionButton;
-    @Bind(R.id.progressbar) ProgressBar mProgressbar;
+    ListView mListView = (ListView) getActivity().findViewById(R.id.listview);
+    RelativeLayout mRelativeLayoutEmpty = (RelativeLayout) getActivity().findViewById(R.id.emptyrelative);
+    ProgressBar mProgressbar = (ProgressBar) getActivity().findViewById(R.id.progressbar);
     private boolean isWiFiEnable;
     private DeviceAdapter mAdapter;
     private List<WifiP2pDevice> mDevicesList = new ArrayList<>();
@@ -75,10 +66,7 @@ public class DevicesList extends Fragment implements MessageListener{
         // action bar
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle("");
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("WiFiDirect");
-
-        // ButterKnife lib
-        ButterKnife.bind(this, view);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Select Player Characters");
 
         // register otto
         WifiDirectApplication.getBus().register(this);
@@ -86,9 +74,6 @@ public class DevicesList extends Fragment implements MessageListener{
         // listview array adapter
         mAdapter = new DeviceAdapter(getActivity(), mDevicesList);
         mListView.setAdapter(mAdapter);
-
-        // set flaoting action button on click listener
-        mFloatingActionButton.setOnClickListener(new FloatOnClickListener());
 
         // set listview item click listener
         mListView.setOnItemClickListener(new ListViewOnClickItem());
@@ -357,7 +342,6 @@ public class DevicesList extends Fragment implements MessageListener{
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
         WifiDirectApplication.getBus().unregister(this);
     }
 

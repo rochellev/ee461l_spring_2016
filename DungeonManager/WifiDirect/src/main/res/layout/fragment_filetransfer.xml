@@ -36,7 +36,8 @@
             android:layout_height="45dp"
             android:text="Choose file"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true"
+            android:onClick="chooseFile" />
 
         <Button
             android:id="@+id/button_done"
@@ -44,7 +45,8 @@
             android:layout_height="45dp"
             android:text="Send File"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"/>
+            android:layout_alignParentLeft="true"
+            android:onClick="sendFile" />
 
     </RelativeLayout>
 

@@ -10,12 +10,10 @@ import android.widget.TextView;
 
 import com.wifidirect.milan.wifidirect.R;
 
-import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by milan on 26.11.15..
@@ -24,7 +22,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>  {
     private List<String> mMessages;
     private Context mContext;
     private boolean isMyMessage;
-    private SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("ccc 'at' H:mm a");
+    private DateFormat mSimpleDateFormat = DateFormat.getDateInstance(0);
     private Calendar mCalendar = Calendar.getInstance();
 
     public ChatAdapter(Context context) {

@@ -19,21 +19,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.wifidirect.milan.wifidirect.utils.FileUtils;
 import com.wifidirect.milan.wifidirect.R;
 import com.wifidirect.milan.wifidirect.activities.MainActivity;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import com.wifidirect.milan.wifidirect.utils.FileUtils;
 
 /**
  * Created by milan on 1.12.15..
  */
 public class FileTransfer extends Fragment {
     private static final int FILE_SELECT_CODE = 0;
-    @Bind(R.id.textviewpath) TextView mTextViewPath;
-    @Bind(R.id.relativelayoutchoosefile) RelativeLayout mRelativeLayoutChooseFile;
+    TextView mTextViewPath = (TextView) getActivity().findViewById(R.id.textviewpath);
+    RelativeLayout mRelativeLayoutChooseFile = (RelativeLayout) getActivity().findViewById(R.id.relativelayoutchoosefile);
 
 
     @Override
@@ -59,9 +55,6 @@ public class FileTransfer extends Fragment {
             ((MainActivity) getActivity()).mToolbar.setSubtitle(name);
         }
 
-        // Butter knife
-        ButterKnife.bind(this, view);
-
         // start file receiver
         if(MainActivity.mService != null) {
             MainActivity.mService.startFileReceiver();
@@ -73,8 +66,8 @@ public class FileTransfer extends Fragment {
     }
 
 
-    @OnClick(R.id.button_choosefile)
-    public void chooseFile() {
+
+    public void chooseFile(View view) {
         Intent intentChooseFile = new Intent(Intent.ACTION_GET_CONTENT);
         intentChooseFile.setType("*/*");
         intentChooseFile.addCategory(Intent.CATEGORY_OPENABLE);
@@ -84,9 +77,7 @@ public class FileTransfer extends Fragment {
                 , FILE_SELECT_CODE);
     }
 
-
-    @OnClick(R.id.button_done)
-    public void sendFile() {
+    public void sendFile(View view) {
         String path = mTextViewPath.getText().toString();
         if(path.equals("path") || path.equals("null")) {
             Toast.makeText(getActivity(), "First, choose file!", Toast.LENGTH_SHORT).show();
@@ -166,8 +157,6 @@ public class FileTransfer extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        // unbind butterknife
-        ButterKnife.unbind(this);
         // stop file receiver
         if(MainActivity.mService != null) {
             MainActivity.mService.stopFileReceiver();
