@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.wifidirect.milan.wifidirect.fragments.DevicesList;
 import com.wifidirect.milan.wifidirect.services.WifiDirectService;
 
 public class UserActivity extends AppCompatActivity implements ServiceConnection {
@@ -21,18 +22,19 @@ public class UserActivity extends AppCompatActivity implements ServiceConnection
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setContentView(com.example.rachel.myfirstapp.R.layout.activity_user);
+        mToolbar = (Toolbar) findViewById(com.example.rachel.myfirstapp.R.id.toolbar);
         setSupportActionBar(mToolbar);
 
         if(savedInstanceState == null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            //fragmentTransaction.add(R.id.container, new DevicesList()).commit();
+            fragmentTransaction.add(R.id.container, new DevicesList());
+            fragmentTransaction.commit();
         }
 
         // start
-        startAndBindService();
+            startAndBindService();
     }
 
     /** Start and bind service. */

@@ -2,6 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.rachel.myfirstapp">
 
+    <!-- permissions -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" android:required="true"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" android:required="true"/>
+
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" android:required="true"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" android:required="true"/>
+
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.INTERNET" android:required="true"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -50,6 +63,10 @@
             android:name=".UserActivity"
             android:label="@string/title_activity_user"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <!-- dependencies from WifiDirect-->
+        <activity android:name="com.wifidirect.milan.wifidirect.activities.MainActivity"/>
+        <service android:name="com.wifidirect.milan.wifidirect.services.WifiDirectService" />
     </application>
 
 </manifest>

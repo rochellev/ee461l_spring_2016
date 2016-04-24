@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ProgressBar
-        android:id="@+id/progressbar"
+        android:id="@+id/deviceslist_progressbar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,7 +12,7 @@
         android:indeterminate="true"/>
 
     <RelativeLayout
-        android:id="@+id/emptyrelative"
+        android:id="@+id/deviceslist_emptyrelative"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
@@ -36,7 +36,7 @@
     </RelativeLayout>
 
     <ListView
-        android:id="@+id/listview"
+        android:id="@+id/deviceslist_listview"
         android:layout_below="@+id/progressbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

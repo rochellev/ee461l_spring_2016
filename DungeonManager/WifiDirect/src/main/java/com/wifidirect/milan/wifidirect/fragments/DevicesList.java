@@ -43,9 +43,9 @@ import java.util.List;
  */
 public class DevicesList extends Fragment implements MessageListener{
     private static final String TAG = "DeviceList";
-    ListView mListView = (ListView) getActivity().findViewById(R.id.listview);
-    RelativeLayout mRelativeLayoutEmpty = (RelativeLayout) getActivity().findViewById(R.id.emptyrelative);
-    ProgressBar mProgressbar = (ProgressBar) getActivity().findViewById(R.id.progressbar);
+    ListView mListView;
+    RelativeLayout mRelativeLayoutEmpty;
+    ProgressBar mProgressbar;
     private boolean isWiFiEnable;
     private DeviceAdapter mAdapter;
     private List<WifiP2pDevice> mDevicesList = new ArrayList<>();
@@ -68,11 +68,16 @@ public class DevicesList extends Fragment implements MessageListener{
         ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle("");
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Select Player Characters");
 
+        //initialize views from the deviceslist fragment
+        mListView = (ListView) view.findViewById(R.id.deviceslist_listview);
+        mRelativeLayoutEmpty = (RelativeLayout) view.findViewById(R.id.deviceslist_emptyrelative);
+        mProgressbar = (ProgressBar) view.findViewById(R.id.deviceslist_progressbar);
+
         // register otto
         WifiDirectApplication.getBus().register(this);
 
         // listview array adapter
-        mAdapter = new DeviceAdapter(getActivity(), mDevicesList);
+         mAdapter = new DeviceAdapter(getActivity(), mDevicesList);
         mListView.setAdapter(mAdapter);
 
         // set listview item click listener

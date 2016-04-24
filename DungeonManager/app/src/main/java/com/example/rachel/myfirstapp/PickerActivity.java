@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
+import com.wifidirect.milan.wifidirect.activities.MainActivity;
+
 
 public class PickerActivity extends AppCompatActivity {
 
@@ -36,7 +38,7 @@ public class PickerActivity extends AppCompatActivity {
     }
 
     public void DMChoice(View view){
-        Intent intent = new Intent(this, UserActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("DM", true);
         startActivity(intent);
     }
