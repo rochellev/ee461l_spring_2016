@@ -50,7 +50,7 @@ public class CharacterSheet implements Serializable {
         return "CharSht" + n;
     }
 
-    private CharacterSheet(){
+    public CharacterSheet(){
         name = DEFAULT_CHAR_NAME;
         race = DEFAULT_RACE_NAME;
         cclass = DEFAULT_CLASS_NAME;

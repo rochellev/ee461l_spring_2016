@@ -33,7 +33,7 @@ public abstract class StatModCmd implements Command{
 
     @Override
     public String getDescription() {
-        return name + "has received " + mod + " " + getStatName();
+        return name + " has received " + mod + " " + getStatName();
     }
 
 }
