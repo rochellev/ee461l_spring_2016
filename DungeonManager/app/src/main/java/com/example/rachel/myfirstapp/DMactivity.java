@@ -16,7 +16,6 @@ public class DMactivity extends AppCompatActivity {
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private NavigationView nvDrawer;
-    private FragmentManager fragMang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +32,7 @@ public class DMactivity extends AppCompatActivity {
         // Find our Nav view
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         // Setup drawer view
+        firstView();
         setupDrawerContent(nvDrawer);
 
     }
@@ -76,9 +76,9 @@ public class DMactivity extends AppCompatActivity {
             case R.id.nav_first_fragment:
                 fragmentClass = TextFragment.class;
                 break;
-//            case R.id.nav_second_fragment:
-//                fragmentClass = SecondFragment.class;
-//                break;
+            case R.id.nav_second_fragment:
+                fragmentClass = DMinitFragment.class;
+                break;
 //            case R.id.nav_third_fragment:
 //                fragmentClass = ThirdFragment.class;
 //                break;
@@ -102,6 +102,20 @@ public class DMactivity extends AppCompatActivity {
         setTitle(menuItem.getTitle());
         // Close the navigation drawer
         mDrawer.closeDrawers();
+    }
+
+
+    public void firstView(){
+        Fragment fragment = null;
+        Class fragmentClass = DMinitFragment.class;
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
     }
 
 }

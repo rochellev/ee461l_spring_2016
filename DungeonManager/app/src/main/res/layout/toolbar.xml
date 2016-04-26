@@ -7,5 +7,5 @@
     android:fitsSystemWindows="true"
     android:minHeight="?attr/actionBarSize"
     app:theme="@style/Theme.AppCompat.Light.NoActionBar"
-    android:background="#D32F2F">
+    android:background="#702929">
 </android.support.v7.widget.Toolbar>

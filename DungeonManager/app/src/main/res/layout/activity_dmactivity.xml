@@ -22,21 +22,15 @@
         <!-- The main content view where fragments are loaded -->
         <FrameLayout
             android:id="@+id/flContent"
-            android:background="#FFCDD2"
+            android:background="#cec1c2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hey you ;)"
-            />
     </LinearLayout>
 
     <!-- The navigation drawer that comes from the left -->
     <!-- Note that `android:layout_gravity` needs to be set to 'start' -->
     <android.support.design.widget.NavigationView
         android:id="@+id/nvView"
-        app:headerLayout="@layout/content_dmactivity"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
